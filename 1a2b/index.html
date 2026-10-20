@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="1a2b.css">
+    <script src="1a2b.js"></script>
+    <title>1A2B Number Guessing Game</title>
+</head>
+<body>
+    <div class="container"> 
+        <div class="containerBox">
+            <button class="gameRuleButton">遊戲規則</button>
+            <h1 class="title">1A2B 猜數字遊戲</h1>
+            <div class="btnContainer">
+                <button class="btn" id="start">START</button>
+                <button class="btn" id="restart">RESTART</button>
+                <button class="btn" id="emptyList">EMPTY</button>
+                <div class="btn" id="peekContainer"> 
+                    <div class="semicircleTop"> 
+                        <img src="images/icons8-eyes-50.png" alt="peek"/>
+                    </div>
+                    <div class="semicircleBottom"></div>
+                    <div class="answer" id="randomNumber"></div>
+                </div>
+            </div>
+        </div>
+        <div class="containerBox">
+            <input class="inputVal" id="inputVal" disabled type="text" maxlength="4"></input>
+            <button class="btn sendBtn" id="sendBtn">SEND</button> 
+        </div>
+        <div class="containerBox">
+            <table class="contentTable">
+                <thead>
+                    <tr>
+                        <th>Guess</th>
+                        <th>Result</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="overlay" id="overlay"></div>
+            <div class="messageContainer">
+                <div class="messageBox" id="messageBox">
+                    <h2 class="messageText"></h2>
+                </div>
+        </div>
+    </div>
+    <p class="credit">Icons by <a href="https://icons8.com" target="_blank" rel="noopener">Icons8</a></p>
+</body>
+</html>

@@ -1,0 +1,173 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  height: 100vh;
+  background: linear-gradient(rgb(39, 16, 104), rgb(161, 111, 215));
+  overflow-y: hidden;
+}
+.containerBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.container > :first-child {
+  display: flex;
+  flex-direction: column;
+}
+.gameRuleButton {
+  width: 130px;
+  height: 50px;
+  background-color: rgb(24, 0, 241);
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+.title {
+  margin-top: 80px;
+  width: 600px;
+  height: 100px;
+  color: white;
+  font-size: 70px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.btnContainer {
+  display: flex;
+  margin-top: 20px;
+}
+.btn {
+  border: 3px solid white;
+  background-color: rgb(255, 221, 0);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin: 20px;
+  font-size: 15px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  text-align: center;
+}
+.semicircleTop,
+.semicircleBottom {
+  transition: transform 0.6s ease-in-out;
+  width: 110px;
+  height: 55px;
+  border-radius: 50px 50px 0 0;
+  background-color: rgb(220, 139, 250);
+}
+.semicircleTop {
+  top: 0;
+  border-radius: 55px 55px 0 0; /*上半圓形 */
+  transform-origin: bottom center;
+}
+.semicircleBottom {
+  bottom: 0;
+  border-radius: 0px 0 55px 55px; /*下半圓形 */
+  transform-origin: top center;
+}
+.answer {
+  display: none;
+  position: relative;
+  color: black;
+  font-size: 20px;
+  transform: translate(0px, -65px);
+}
+.flipped .semicircleTop {
+  transform: translateY(-20px);
+}
+.flipped .semicircleBottom {
+  transform: translateY(20px);
+}
+.flipped .answer {
+  display: block;
+}
+.inputVal {
+  height: 100px;
+  font-size: 70px;
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.sendBtn {
+  width: 120px;
+  height: 80px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+  border: 2px solid white;
+  background-color: rgb(64, 64, 206);
+  color: white;
+  margin: 20px;
+  font-size: 15px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+.contentTable {
+  border-collapse: collapse;
+  margin: 35px;
+  font-size: 35px;
+  width: 60%;
+  letter-spacing: 3px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.contentTable thead tr {
+  text-align: left;
+  font-weight: bold;
+  color: white;
+}
+.contentTable th {
+  border-bottom: 2px solid rgb(242, 242, 242);
+}
+.contentTable thead tbody {
+  color: white;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+.messageContainer {
+  color: white;
+  cursor: pointer;
+  display: none;
+  width: 500px;
+  height: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+.messageBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  line-height: 50px;
+}
+
+.credit {
+  position: fixed;
+  bottom: 8px;
+  right: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.credit a {
+  color: inherit;
+}
