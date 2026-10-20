@@ -18,7 +18,7 @@ body {
   align-items: flex-end;
 }
 
-/* 標題、難度按鈕和兩個拼圖框放在同一欄，標題才會對準拼圖置中 */
+/* Title, level buttons and both boards share one column, so the title centers over the boards */
 .gameArea {
   display: flex;
   flex-direction: column;
@@ -95,7 +95,7 @@ body {
   cursor: not-allowed;
   opacity: 0.5;
 }
-/* 透過使用 :not(:disabled) 與 :active 結合，你可以確保只有當按鈕不是停用狀態時，點擊才會觸發放大效果。 */
+/* :not(:disabled) with :active makes sure the button only grows when it's actually clickable */
 .gameLevelBtn:active:not(:disabled) {
   transform: scale(1.1);
 }
@@ -105,7 +105,7 @@ body {
 }
 
 .gameTitle {
-  padding: 60px 0 20px 8px; /* 左邊補 8px，抵銷 letter-spacing 在最後一個字母後面多出的空間 */
+  padding: 60px 0 20px 8px; /* 8px on the left cancels out the extra letter-spacing after the last letter */
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 56px;
   letter-spacing: 8px;

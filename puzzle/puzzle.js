@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   checkGameStarted();
 
 
-   // 初始設置
+   // Initial setup
    function disableStartButton(disable) {
     var startButton = document.getElementById("start");
     startButton.disabled = disable;
@@ -26,33 +26,33 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  //指定大小更新array和originalArray
+  // Rebuild array and originalArray for the chosen grid size
   //size can be = 3*3 ... 
   function updateArrayForGridSize(size) {
-    //將上面定義的 global variable gridSize更新為size
+    // Update the global gridSize
     gridSize = size;
-    //將 global variable array重新定義為空術組, 儲存目前的拼圖塊的順序
+    // Reset the global array; it stores the current order of the puzzle pieces
     array = [];
-    //從0到size*size-1的數
+    // Fill it with 0 to size*size-1
     for (let i = 0; i < size * size; i++) {
       array.push(i);
     }
     originalArray = array.slice();
   }
 
-  //接收一個參數gridSizeValue，遊戲開始時的大小。
+  // gridSizeValue is the board size the game starts with
   function Start(gridSizeValue, shuffle = false) {
-    //updateArrayForGridSize函數，並傳入gridSizeValue作為參數，更新拼圖大小 和array的初始排序。
+    // Set the puzzle size and the starting order of the array
     updateArrayForGridSize(gridSizeValue);
     isReset = false;
-    // 只有在需要洗牌時才 call ShuffleArray function
+    // Only shuffle when asked to
     if (shuffle) {
       ShuffleArray(array); 
     }
     GetPuzzlePieces();
     isGameStarted = true;
     disableGameLevelButtons(false);
-    checkGameStarted(); // 遊戲開始後再次檢查
+    checkGameStarted(); // check again now that the game has started
   }
 
   function UpdateNumberOfTurns(value) {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ResetPuzzle();
     GetPuzzlePieces();
     isGameStarted = false;
-    checkGameStarted(); // 重置後再次檢查
+    checkGameStarted(); // check again after the reset
     disableStartButton(true); 
     disableResetButton(true); 
   }
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let startButton = document.getElementById("start");
   let resetButton = document.getElementById("reset");
 
-   // 檢查是否遊戲已開始，並啟用/禁用按鈕
+   // Enable or disable buttons depending on whether the game has started
    function checkGameStarted() {
     if (isGameStarted) {
       document.getElementById("start").disabled = true;
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // 開始按鈕事件監聽器
+  // Start button
   document.getElementById("start").addEventListener("click", function () {
     if (selectedGameLevel) {
         Start(selectedGameLevel, true); 
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-   // 重置按鈕事件監聽器
+   // Reset button
    document.getElementById("reset").addEventListener("click", function () {
     Reset();
   });
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('hard').disabled = disable;
   }
 
-  //用 global variable 來儲存 game level變量
+  // Global variable that stores the chosen game level
   var selectedGameLevel = null;
 
   function initializeGameLevelButtons() {
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     easyButton.addEventListener('click', function() {
         selectedGameLevel = 3;
         disableOtherGameLevelButtons(easyButton);
-        disableStartButton(false); // 启用开始按钮
+        disableStartButton(false); // enable the Start button
     });
     mediumButton.addEventListener('click', function() {
         selectedGameLevel = 4;
@@ -133,12 +133,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-// 禁用除了当前选中的游戏难度按钮外的其他所有游戏难度按钮
+// Disable every level button except the one that was picked
 function disableOtherGameLevelButtons(selectedButton) {
     var buttons = [document.getElementById('easy'), document.getElementById('medium'), document.getElementById('hard')];
     buttons.forEach(button => {
         if (button !== selectedButton) {
-            button.disabled = true; // 禁用非选中的按钮
+            button.disabled = true; // disable the buttons that weren't picked
         }
     });
 }
@@ -146,9 +146,9 @@ function disableOtherGameLevelButtons(selectedButton) {
 
   //upload picture
   var fileInput = document.createElement("input");
-  //設置 <input> 元素的類型為 'file'，允許用戶選擇文件上傳。
+  // Make it a file input so the user can upload a picture
   fileInput.type = "file";
-  //這行代碼限制 <input> 元素只接受圖片文件，image/* 表示所有類型的圖片。
+  // Only accept image files (image/* means any image type)
   fileInput.accept = "image/*";
   fileInput.style.width = "180px";
   fileInput.style.margin = "20px";
@@ -157,13 +157,13 @@ function disableOtherGameLevelButtons(selectedButton) {
 
   fileInput.addEventListener("change", function (e) {
     console.log("File input changed.");
-    //e.target.files：首先檢查 files 對象是否存在
-    //e.target.files[0]：這個檢查確保列表中至少有一個文件
+    // e.target.files: make sure the files list exists
+    // e.target.files[0]: make sure at least one file was chosen
     if (e.target.files && e.target.files[0]) {
-      //創建一個 FileReader 對象，用於讀取用戶上傳的文件
+      // FileReader reads the uploaded file
       var reader = new FileReader();
       reader.onload = function (e) {
-        //將讀取到的圖片數據設置為拼圖圖片的源，從而顯示用戶選擇的圖片
+        // Use the uploaded picture as the puzzle image
         var puzzleImage = document.getElementById("fixedImg"); // Moved inside to ensure accessibility
         puzzleImage.src = e.target.result;
       };
@@ -181,14 +181,14 @@ function disableOtherGameLevelButtons(selectedButton) {
     // Get the image source
     var imageUrl = puzzleImage.src;
 
-    // Clear the puzzle container 這樣shuffled過得piece不會重疊
+    // Clear the puzzle container so shuffled pieces don't stack on top of each other
     puzzleContainer.innerHTML = "";
 
     // Dynamically set the grid layout to match gridSize
     puzzleContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
 
     // Calculate the width and height of each puzzle piece
-    //因為是 3*3 拼圖, 所以要除以3
+    // Divide by gridSize because the board is gridSize x gridSize (3 for a 3x3 puzzle)
     var pieceWidth = puzzleImage.width / gridSize;
     var pieceHeight = puzzleImage.height / gridSize;
 
@@ -199,9 +199,9 @@ function disableOtherGameLevelButtons(selectedButton) {
     // index = > current index of array
     // i = > position of the index
     array.forEach((index, i) => {
-      var row = Math.floor(index / gridSize); // xy軸點
+      var row = Math.floor(index / gridSize); // row and column of this piece in the picture
       var col = index % gridSize;
-      var piece = document.createElement("div"); //每一格puzzle piece
+      var piece = document.createElement("div"); // one puzzle piece
 
       piece.style.width = pieceWidth + "px";
       piece.style.height = pieceHeight + "px";
@@ -213,7 +213,7 @@ function disableOtherGameLevelButtons(selectedButton) {
       piece.style.border = "1px solid #333";
       piece.style.boxSizing = "border-box";
 
-      //把index(8)變白色 but do not change color when is reset
+      // Make the last piece (index 8 on 3x3) the white blank, but not while the game is reset
       if (index === array.length - 1) {
         // Set the background color to white for the blank piece
         piece.style.backgroundColor = "white";
@@ -224,9 +224,9 @@ function disableOtherGameLevelButtons(selectedButton) {
         piece.style.zIndex = "";
       }
 
-      //點擊圖片移動 => add click eventlistener
+      // Clicking a piece tries to move it
       piece.addEventListener("click", function () {
-        // i => 元素的位置
+        // i = the position of this piece on the board
         MovePiece(i);
       });
 
@@ -257,8 +257,8 @@ function disableOtherGameLevelButtons(selectedButton) {
     }
   }
 
-  // 檢查洗牌後的排列是否有解
-  // 空白格是數值最大的那塊 (array.length - 1)，計算反轉數時要排除它
+  // Check whether a shuffled board can actually be solved
+  // The blank is the piece with the highest value (array.length - 1), so leave it out when counting inversions
   function isSolvable(array) {
     const gridWidth = Math.sqrt(array.length);
     const blank = array.length - 1;
@@ -273,12 +273,12 @@ function disableOtherGameLevelButtons(selectedButton) {
       }
     }
 
-    // 寬度是奇數 (3x3, 5x5)：反轉數必須是偶數
+    // Odd width (3x3, 5x5): the inversion count must be even
     if (gridWidth % 2 === 1) {
       return inversions % 2 === 0;
     }
 
-    // 寬度是偶數 (4x4)：反轉數 + 空白格從底部數第幾列，必須是奇數
+    // Even width (4x4): inversions + blank's row counted from the bottom must be odd
     const blankRowFromBottom = gridWidth - Math.floor(array.indexOf(blank) / gridWidth);
     return (inversions + blankRowFromBottom) % 2 === 1;
   }
@@ -292,17 +292,17 @@ function disableOtherGameLevelButtons(selectedButton) {
   }
 
   var gridSize = 3; // its a 3*3 puzzle
-  //先判斷拼圖能不能動
+  // First check whether the clicked piece can move
   function IsMove(clickIndex, blankIndex) {
-    //拿到點擊的圖片的位置
+    // Row and column of the clicked piece
     var clickRow = Math.floor(clickIndex / gridSize); // result = 1
     var clickCol = clickIndex % gridSize; // result = 2
 
-    //拿到空白圖片的位置
+    // Row and column of the blank
     var blankRow = Math.floor(blankIndex / gridSize); //result = 2
     var blankCol = blankIndex % gridSize; //result = 2
 
-    // var dontMoveRow = Math.floor((gridSize * gridSize - 1) / gridSize);// result = 2 計算最後一行的第一個拼圖的行索引
+    // var dontMoveRow = Math.floor((gridSize * gridSize - 1) / gridSize);// result = 2, row index of the last piece
     // var dontMoveCol = (gridSize * gridSize - 1) % gridSize;
 
     if (clickRow == blankRow && Math.abs(clickCol - blankCol) == 1) {
@@ -315,12 +315,12 @@ function disableOtherGameLevelButtons(selectedButton) {
   function MovePiece(clickIndex) {
     var blankPuzzlePiece = array.indexOf(array.length - 1);
 
-    // 如果遊戲在reset中移動，顯示警告
+    // If the player clicks after a reset, show a reminder
     if (isReset) {
       alert("Please click on START button to start the game ~");
       // This stops the function if the game is reset
-      // 停止執行： 當遇到 return 時，函數會停止執行其餘的代碼。
-      //這裡的return 返回值: undefined
+      // return stops the rest of this function from running
+      // (it returns undefined)
       return;
     }
     if (IsMove(clickIndex, blankPuzzlePiece)) {
@@ -333,14 +333,14 @@ function disableOtherGameLevelButtons(selectedButton) {
       numberOfTurns++;
       document.getElementById("turns").innerHTML = numberOfTurns;
 
-      // 更新拼圖顯示
+      // Redraw the board
       GetPuzzlePieces();
 
-      //延遲檢查拼圖是否完成，給予拼圖塊移動和重新渲染足夠的時間
+      // Wait a moment before checking for a win so the move has time to render
       setTimeout(FinishPuzzle, 300);
     }
   }
-  //完成拼圖 跳出彈幕
+  // Puzzle finished: show a message
   function FinishPuzzle() {
     if (array.join(",") === originalArray.join(",")) {
       alert("Puzzle solved!");
