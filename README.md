@@ -1,6 +1,6 @@
 # Web Projects (2024)
 
-Two small browser games I built in early 2024 during a front-end web development course at MAYOHR. Both use plain HTML, CSS and JavaScript with no frameworks or libraries.
+Two small browser games I built in early 2024 during my software engineering internship at MAYOHR in Taiwan. Both use plain HTML, CSS and JavaScript with no frameworks or libraries.
 
 | Project | Play | Code |
 |---|---|---|
