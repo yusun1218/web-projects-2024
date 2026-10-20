@@ -15,12 +15,14 @@ body {
 .box {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
-.title img {
-  width: 500px;
-  height: 250px;
+/* 標題、難度按鈕和兩個拼圖框放在同一欄，標題才會對準拼圖置中 */
+.gameArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .board {
@@ -72,8 +74,9 @@ body {
   justify-content: center;
   align-items: center;
 }
-.levelBtnBox{
-  margin-left: 700px;
+.levelBtnBox {
+  align-self: flex-end;
+  margin-right: 20px;
   margin-bottom: -30px;
 }
 
@@ -102,7 +105,7 @@ body {
 }
 
 .gameTitle {
-  padding: 60px 0 30px;
+  padding: 60px 0 20px 8px; /* 左邊補 8px，抵銷 letter-spacing 在最後一個字母後面多出的空間 */
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 56px;
   letter-spacing: 8px;
