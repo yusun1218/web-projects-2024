@@ -27,9 +27,9 @@ The puzzle image is an original illustration made for this project.
 
 ## 1A2B Number Guessing Game
 
-![1A2B Number Guessing Game](screenshots/1a2b.png)
+![1A2B Number Guessing Game](screenshots/1a2b-game.png)
 
-The game picks a secret 4-digit number with no repeated digits. You guess, and it tells you how close you are: **A** means a right digit in the right place, **B** means a right digit in the wrong place. `4A0B` wins. The interface is in Traditional Chinese.
+The game picks a secret 4-digit number with no repeated digits. You guess, and it tells you how close you are: **A** means a right digit in the right place, **B** means a right digit in the wrong place. `4A0B` wins.
 
 Features:
 

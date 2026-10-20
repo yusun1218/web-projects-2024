@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Create a confirm button
     var confirmButton = document.createElement("button");
-    confirmButton.textContent = "確定";
+    confirmButton.textContent = "OK";
     // Set button styles as needed
     confirmButton.style.padding = "5px 10px";
     confirmButton.style.cursor = "pointer";
@@ -177,11 +177,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //game rules
   function ShowGameRules() {
-    var rulesMessage = "遊戲規則： <br>" +
-        "1.&emsp;輸入四個數字，只能是數字且不能重複 <br>" +
-        "2.&emsp;如果數字正確位置也正確，就是 A <br>" +
-        "3.&emsp;如果數字正確位置不正確，就是 B <br>" +
-        "4.&emsp;如果猜中四個A就代表遊戲成功。";
+    var rulesMessage = "How to Play <br>" +
+        "1.&emsp;Enter 4 digits. No letters, and no digit can repeat. <br>" +
+        "2.&emsp;A = right digit in the right place <br>" +
+        "3.&emsp;B = right digit in the wrong place <br>" +
+        "4.&emsp;Get 4A to win!";
 
     ShowMessage(rulesMessage, "normal"); 
 }
